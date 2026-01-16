@@ -205,6 +205,26 @@ class OpenAIProvider(LLMProvider):
     """OpenAI GPT models (gpt-4o, gpt-4o-mini)."""
     ...
 
+class CohereProvider(LLMProvider):
+    """Cohere Command models (command-r-plus, command-r)."""
+    ...
+
+class GeminiProvider(LLMProvider):
+    """Google Gemini models (gemini-1.5-pro, gemini-1.5-flash)."""
+    ...
+
+class MistralProvider(LLMProvider):
+    """Mistral AI models (mistral-large, mistral-medium)."""
+    ...
+
+class HuggingFaceProvider(LLMProvider):
+    """HuggingFace Inference API models."""
+    ...
+
+class OllamaProvider(LLMProvider):
+    """Local Ollama models (llama2, mistral, etc.)."""
+    ...
+
 class AnthropicProvider(LLMProvider):
     """Anthropic Claude models (claude-3.5-sonnet, claude-3-haiku)."""
     ...
@@ -222,9 +242,58 @@ class MockLLM(LLMProvider):
         "parse_brd": {...}
     }
 
-def get_llm_provider(provider: str = "auto") -> LLMProvider:
-    """Returns appropriate provider based on available API keys."""
+@dataclass
+class FallbackResult:
+    """Result from a fallback chain call."""
+    response: str
+    provider_used: str
+    attempts: List[tuple[str, str]]  # (provider_name, error) for failed attempts
+
+class FallbackChain(LLMProvider):
+    """Chain of fallback providers for LLM calls.
+
+    Tries providers in priority order until one succeeds.
+    Falls back to MockLLM if all real providers fail.
+
+    Priority order:
+    1. OpenAI → 2. Cohere → 3. Gemini → 4. Grok → 5. Mistral →
+    6. HuggingFace → 7. Ollama → 8. Anthropic → 9. Bedrock → 10. MockLLM
+    """
+    providers: List[tuple[str, LLMProvider]]
+
+    @classmethod
+    def from_environment(cls, **kwargs) -> "FallbackChain":
+        """Create fallback chain from available API keys."""
+        ...
+
+    async def complete(self, prompt: str, **kwargs) -> str:
+        """Try providers in order until one succeeds."""
+        for name, provider in self.providers:
+            try:
+                return await provider.complete(prompt, **kwargs)
+            except Exception:
+                continue  # Try next provider
+        raise RuntimeError("All providers failed")
+
+    async def complete_with_result(self, prompt: str, **kwargs) -> FallbackResult:
+        """Complete with detailed result information."""
+        ...
+
+def get_llm_provider(provider: str = "auto", use_fallback_chain: bool = False) -> LLMProvider:
+    """Returns appropriate provider based on available API keys.
+
+    Args:
+        provider: "auto", "fallback", "mock", or specific provider name
+        use_fallback_chain: If True, returns FallbackChain
+
+    Returns:
+        LLMProvider instance (or FallbackChain if requested)
+    """
     ...
+
+def get_fallback_chain(**kwargs) -> FallbackChain:
+    """Convenience function to get a FallbackChain directly."""
+    return FallbackChain.from_environment(**kwargs)
 ```
 
 ### 5. Document Processing Pipeline (aitea-ingest)

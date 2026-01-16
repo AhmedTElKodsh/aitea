@@ -33,12 +33,20 @@ from .llm import (
     MockLLM,
     ChatMessage,
     get_llm_provider,
+    get_fallback_chain,
     MOCK_MODE_WARNING,
 )
 from .providers import (
     OpenAIProvider,
     AnthropicProvider,
     BedrockProvider,
+    CohereProvider,
+    GeminiProvider,
+    MistralProvider,
+    HuggingFaceProvider,
+    OllamaProvider,
+    FallbackChain,
+    FallbackResult,
     ProviderConfig,
 )
 from .prompts import (
@@ -153,11 +161,19 @@ __all__ = [
     "MockLLM",
     "ChatMessage",
     "get_llm_provider",
+    "get_fallback_chain",
     "MOCK_MODE_WARNING",
     # Multi-provider implementations
     "OpenAIProvider",
     "AnthropicProvider",
     "BedrockProvider",
+    "CohereProvider",
+    "GeminiProvider",
+    "MistralProvider",
+    "HuggingFaceProvider",
+    "OllamaProvider",
+    "FallbackChain",
+    "FallbackResult",
     "ProviderConfig",
     # Prompt templates
     "PromptTemplate",

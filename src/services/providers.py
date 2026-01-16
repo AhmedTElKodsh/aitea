@@ -1420,3 +1420,331 @@ class OllamaProvider(LLMProvider):
     def context_window(self) -> int:
         """Get the context window size for the current model."""
         return 4096  # Default, varies by model
+
+
+# =============================================================================
+# Multi-Provider Fallback Chain
+# =============================================================================
+
+import logging
+from enum import Enum
+
+logger = logging.getLogger(__name__)
+
+
+class ProviderPriority(Enum):
+    """Provider priority order for fallback chain."""
+    OPENAI = 1
+    COHERE = 2
+    GEMINI = 3
+    GROK = 4
+    MISTRAL = 5
+    HUGGINGFACE = 6
+    OLLAMA = 7
+    ANTHROPIC = 8
+    BEDROCK = 9
+    MOCK = 10
+
+
+@dataclass
+class FallbackResult:
+    """Result from a fallback chain call.
+    
+    Attributes:
+        response: The successful response text
+        provider_used: Name of the provider that succeeded
+        attempts: List of (provider_name, error) tuples for failed attempts
+    """
+    response: str
+    provider_used: str
+    attempts: List[tuple[str, str]] = field(default_factory=list)
+
+
+class FallbackChain(LLMProvider):
+    """Chain of fallback providers for LLM calls.
+    
+    Tries providers in priority order until one succeeds.
+    Falls back to MockLLM if all real providers fail.
+    
+    Priority order:
+    1. OpenAI → 2. Cohere → 3. Gemini → 4. Grok → 5. Mistral → 
+    6. HuggingFace → 7. Ollama → 8. Anthropic → 9. Bedrock → 10. MockLLM
+    
+    Attributes:
+        providers: List of (name, provider) tuples in priority order
+        show_warnings: Whether to display warnings when falling back
+        
+    Example:
+        >>> chain = FallbackChain.from_environment()
+        >>> response = await chain.complete("Hello, world!")
+        >>> print(f"Response from {chain.last_provider_used}: {response}")
+    """
+    
+    def __init__(
+        self,
+        providers: Optional[List[tuple[str, LLMProvider]]] = None,
+        show_warnings: bool = True,
+    ) -> None:
+        """Initialize the fallback chain.
+        
+        Args:
+            providers: List of (name, provider) tuples in priority order.
+                      If None, will be built from environment variables.
+            show_warnings: Whether to display warnings when falling back
+        """
+        self.providers = providers or []
+        self.show_warnings = show_warnings
+        self._last_provider_used: Optional[str] = None
+        self._last_attempts: List[tuple[str, str]] = []
+    
+    @classmethod
+    def from_environment(
+        cls,
+        show_warnings: bool = True,
+        **kwargs: Any
+    ) -> "FallbackChain":
+        """Create a fallback chain from environment variables.
+        
+        Checks for available API keys and creates providers in priority order.
+        Always includes MockLLM as the final fallback.
+        
+        Args:
+            show_warnings: Whether to display warnings when falling back
+            **kwargs: Additional provider-specific parameters
+            
+        Returns:
+            A FallbackChain instance with available providers
+        """
+        from .llm import MockLLM
+        
+        providers: List[tuple[str, LLMProvider]] = []
+        
+        # Check and add providers in priority order
+        
+        # 1. OpenAI
+        if os.environ.get("OPENAI_API_KEY"):
+            try:
+                providers.append(("OpenAI", OpenAIProvider(**kwargs)))
+                logger.debug("Added OpenAI provider to fallback chain")
+            except Exception as e:
+                logger.warning(f"Failed to initialize OpenAI provider: {e}")
+        
+        # 2. Cohere
+        if os.environ.get("COHERE_API_KEY"):
+            try:
+                providers.append(("Cohere", CohereProvider(**kwargs)))
+                logger.debug("Added Cohere provider to fallback chain")
+            except Exception as e:
+                logger.warning(f"Failed to initialize Cohere provider: {e}")
+        
+        # 3. Gemini
+        if os.environ.get("GOOGLE_API_KEY") or os.environ.get("GOOGLE_API_KEY_2"):
+            try:
+                providers.append(("Gemini", GeminiProvider(**kwargs)))
+                logger.debug("Added Gemini provider to fallback chain")
+            except Exception as e:
+                logger.warning(f"Failed to initialize Gemini provider: {e}")
+        
+        # 4. Grok (uses OpenAI-compatible API)
+        if os.environ.get("XAI_API_KEY"):
+            try:
+                grok_kwargs = {**kwargs, "api_key": os.environ.get("XAI_API_KEY")}
+                providers.append(("Grok", OpenAIProvider(**grok_kwargs)))
+                logger.debug("Added Grok provider to fallback chain")
+            except Exception as e:
+                logger.warning(f"Failed to initialize Grok provider: {e}")
+        
+        # 5. Mistral
+        if os.environ.get("MISTRAL_API_KEY"):
+            try:
+                providers.append(("Mistral", MistralProvider(**kwargs)))
+                logger.debug("Added Mistral provider to fallback chain")
+            except Exception as e:
+                logger.warning(f"Failed to initialize Mistral provider: {e}")
+        
+        # 6. HuggingFace
+        if os.environ.get("HUGGINGFACE_API_KEY"):
+            try:
+                providers.append(("HuggingFace", HuggingFaceProvider(**kwargs)))
+                logger.debug("Added HuggingFace provider to fallback chain")
+            except Exception as e:
+                logger.warning(f"Failed to initialize HuggingFace provider: {e}")
+        
+        # 7. Ollama (check if running)
+        ollama_host = os.environ.get("OLLAMA_HOST", "http://localhost:11434")
+        try:
+            import httpx
+            response = httpx.get(ollama_host, timeout=2.0)
+            if response.status_code == 200:
+                providers.append(("Ollama", OllamaProvider(host=ollama_host, **kwargs)))
+                logger.debug("Added Ollama provider to fallback chain")
+        except Exception:
+            pass  # Ollama not available
+        
+        # 8. Anthropic
+        if os.environ.get("ANTHROPIC_API_KEY"):
+            try:
+                providers.append(("Anthropic", AnthropicProvider(**kwargs)))
+                logger.debug("Added Anthropic provider to fallback chain")
+            except Exception as e:
+                logger.warning(f"Failed to initialize Anthropic provider: {e}")
+        
+        # 9. Bedrock
+        if os.environ.get("AWS_ACCESS_KEY_ID") and os.environ.get("AWS_SECRET_ACCESS_KEY"):
+            try:
+                providers.append(("Bedrock", BedrockProvider(**kwargs)))
+                logger.debug("Added Bedrock provider to fallback chain")
+            except Exception as e:
+                logger.warning(f"Failed to initialize Bedrock provider: {e}")
+        
+        # 10. MockLLM (always available as final fallback)
+        providers.append(("MockLLM", MockLLM()))
+        logger.debug("Added MockLLM as final fallback")
+        
+        return cls(providers=providers, show_warnings=show_warnings)
+    
+    @property
+    def last_provider_used(self) -> Optional[str]:
+        """Get the name of the last provider that successfully handled a request."""
+        return self._last_provider_used
+    
+    @property
+    def last_attempts(self) -> List[tuple[str, str]]:
+        """Get the list of (provider_name, error) tuples from the last call."""
+        return self._last_attempts
+    
+    @property
+    def available_providers(self) -> List[str]:
+        """Get list of available provider names in priority order."""
+        return [name for name, _ in self.providers]
+    
+    async def complete(self, prompt: str, **kwargs: Any) -> str:
+        """Generate a completion, trying providers in order until one succeeds.
+        
+        Args:
+            prompt: The input prompt to complete
+            **kwargs: Additional provider-specific parameters
+            
+        Returns:
+            The generated completion text
+            
+        Raises:
+            RuntimeError: If all providers fail (should never happen with MockLLM)
+        """
+        self._last_attempts = []
+        
+        for name, provider in self.providers:
+            try:
+                response = await provider.complete(prompt, **kwargs)
+                self._last_provider_used = name
+                
+                if name == "MockLLM" and self.show_warnings and len(self._last_attempts) > 0:
+                    logger.warning(
+                        f"All real providers failed, using MockLLM. "
+                        f"Attempts: {self._last_attempts}"
+                    )
+                elif name != "MockLLM":
+                    logger.info(f"Request handled by {name}")
+                
+                return response
+                
+            except Exception as e:
+                error_msg = str(e)
+                self._last_attempts.append((name, error_msg))
+                logger.debug(f"Provider {name} failed: {error_msg}")
+                
+                if self.show_warnings and name != "MockLLM":
+                    logger.warning(f"Provider {name} failed, trying next: {error_msg}")
+        
+        # This should never happen since MockLLM is always available
+        raise RuntimeError("All providers failed, including MockLLM")
+    
+    async def chat(self, messages: List[ChatMessage], **kwargs: Any) -> str:
+        """Generate a chat response, trying providers in order until one succeeds.
+        
+        Args:
+            messages: List of chat messages in the conversation
+            **kwargs: Additional provider-specific parameters
+            
+        Returns:
+            The generated response text
+        """
+        self._last_attempts = []
+        
+        for name, provider in self.providers:
+            try:
+                response = await provider.chat(messages, **kwargs)
+                self._last_provider_used = name
+                
+                if name == "MockLLM" and self.show_warnings and len(self._last_attempts) > 0:
+                    logger.warning(
+                        f"All real providers failed, using MockLLM. "
+                        f"Attempts: {self._last_attempts}"
+                    )
+                elif name != "MockLLM":
+                    logger.info(f"Chat request handled by {name}")
+                
+                return response
+                
+            except Exception as e:
+                error_msg = str(e)
+                self._last_attempts.append((name, error_msg))
+                logger.debug(f"Provider {name} failed: {error_msg}")
+        
+        raise RuntimeError("All providers failed, including MockLLM")
+    
+    async def stream(self, prompt: str, **kwargs: Any) -> AsyncIterator[str]:
+        """Stream a completion, trying providers in order until one succeeds.
+        
+        Args:
+            prompt: The input prompt to complete
+            **kwargs: Additional provider-specific parameters
+            
+        Yields:
+            String chunks of the generated response
+        """
+        self._last_attempts = []
+        
+        for name, provider in self.providers:
+            try:
+                async for chunk in provider.stream(prompt, **kwargs):
+                    self._last_provider_used = name
+                    yield chunk
+                return  # Successfully streamed
+                
+            except Exception as e:
+                error_msg = str(e)
+                self._last_attempts.append((name, error_msg))
+                logger.debug(f"Provider {name} failed: {error_msg}")
+        
+        raise RuntimeError("All providers failed, including MockLLM")
+    
+    def count_tokens(self, text: str) -> int:
+        """Count tokens using the first available provider.
+        
+        Args:
+            text: The text to count tokens for
+            
+        Returns:
+            The token count
+        """
+        if self.providers:
+            return self.providers[0][1].count_tokens(text)
+        return len(text) // 4 + 1  # Fallback estimation
+    
+    async def complete_with_result(self, prompt: str, **kwargs: Any) -> FallbackResult:
+        """Generate a completion and return detailed result information.
+        
+        Args:
+            prompt: The input prompt to complete
+            **kwargs: Additional provider-specific parameters
+            
+        Returns:
+            FallbackResult with response, provider used, and attempt history
+        """
+        response = await self.complete(prompt, **kwargs)
+        return FallbackResult(
+            response=response,
+            provider_used=self._last_provider_used or "Unknown",
+            attempts=list(self._last_attempts)
+        )

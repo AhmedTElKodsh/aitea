@@ -362,24 +362,29 @@
 
     - _Requirements: 3.5, 13.2_
 
-  - [ ] 21.10 Implement OllamaProvider for local models
+  - [x] 21.10 Implement OllamaProvider for local models
 
     - _Requirements: 3.5, 13.2_
 
-  - [ ] 21.11 Create LLMFallbackChain with automatic provider initialization
+  - [x] 21.11 Create LLMFallbackChain with automatic provider initialization
 
+    - ✅ **COMPLETED**: Implemented `FallbackChain` class in `src/services/providers.py` with `from_environment()` class method
     - _Requirements: 13.2, 13.3_
 
-  - [ ] 21.12 Implement provider health checking and failover logic
+  - [x] 21.12 Implement provider health checking and failover logic
 
+    - ✅ **COMPLETED**: FallbackChain tries providers in order, catches exceptions, and falls back to next provider
     - _Requirements: 13.3_
 
-  - [ ] 21.13 Add logging for provider selection and request handling
+  - [x] 21.13 Add logging for provider selection and request handling
 
+    - ✅ **COMPLETED**: Added logging in FallbackChain for provider attempts, failures, and successful handling
     - _Requirements: 13.7_
 
-  - [ ] 21.14 Update get_llm_provider() to use fallback chain
+  - [x] 21.14 Update get_llm_provider() to use fallback chain
 
+    - ✅ **COMPLETED**: Added `provider="fallback"` and `use_fallback_chain=True` options to `get_llm_provider()`
+    - Added `get_fallback_chain()` convenience function
     - _Requirements: 13.1, 13.2, 13.4_
 
   - [ ]\* 21.15 Write property test for multi-provider fallback consistency
@@ -856,7 +861,8 @@
     - _Requirements: 9.3_
   - [ ] 59.2 Implement circuit breaker pattern
     - _Requirements: 9.3_
-  - [ ] 59.3 Implement FallbackChain for provider failover
+  - [x] 59.3 Implement FallbackChain for provider failover
+    - ✅ **COMPLETED**: Implemented in task 21.11-21.14 (`src/services/providers.py`)
     - _Requirements: 9.3_
   - [ ] 59.4 Add timeout handling with graceful degradation
     - _Requirements: 9.3_

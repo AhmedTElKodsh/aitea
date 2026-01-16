@@ -438,6 +438,7 @@ def _display_mock_warning() -> None:
 def get_llm_provider(
     provider: str = "auto",
     show_warning: bool = True,
+    use_fallback_chain: bool = False,
     **kwargs: Any
 ) -> LLMProvider:
     """Get an LLM provider based on available API keys.
@@ -452,6 +453,7 @@ def get_llm_provider(
     Args:
         provider: The provider to use. Options:
             - "auto": Automatically select based on available API keys
+            - "fallback": Use FallbackChain to try all providers in order
             - "mock": Always use MockLLM
             - "openai": Use OpenAI (requires OPENAI_API_KEY)
             - "cohere": Use Cohere (requires COHERE_API_KEY)
@@ -463,10 +465,12 @@ def get_llm_provider(
             - "anthropic": Use Anthropic (requires ANTHROPIC_API_KEY)
             - "bedrock": Use AWS Bedrock (requires AWS credentials)
         show_warning: Whether to display a warning when using MockLLM
+        use_fallback_chain: If True, returns a FallbackChain that tries all
+                           available providers in order (same as provider="fallback")
         **kwargs: Additional provider-specific parameters (model, temperature, etc.)
             
     Returns:
-        An LLMProvider instance
+        An LLMProvider instance (or FallbackChain if use_fallback_chain=True)
         
     Raises:
         ValueError: If the requested provider is not available
@@ -474,6 +478,11 @@ def get_llm_provider(
     Example:
         >>> # Auto-select provider based on available keys
         >>> llm = get_llm_provider()
+        
+        >>> # Use fallback chain to try all providers
+        >>> llm = get_llm_provider("fallback")
+        >>> # or
+        >>> llm = get_llm_provider(use_fallback_chain=True)
         
         >>> # Explicitly use MockLLM for testing
         >>> llm = get_llm_provider("mock", show_warning=False)
@@ -487,10 +496,26 @@ def get_llm_provider(
     # Import providers here to avoid circular imports
     from .providers import (
         OpenAIProvider, CohereProvider, GeminiProvider, MistralProvider,
-        HuggingFaceProvider, OllamaProvider, AnthropicProvider, BedrockProvider
+        HuggingFaceProvider, OllamaProvider, AnthropicProvider, BedrockProvider,
+        FallbackChain
     )
     
     available_keys = _check_api_keys()
+    
+    # Handle fallback chain request
+    if provider == "fallback" or use_fallback_chain:
+        chain = FallbackChain.from_environment(show_warnings=show_warning, **kwargs)
+        
+        # Show warning if only MockLLM is available
+        if len(chain.providers) == 1 and chain.providers[0][0] == "MockLLM":
+            if show_warning:
+                _display_mock_warning()
+        else:
+            available = [name for name, _ in chain.providers if name != "MockLLM"]
+            if available:
+                print(f"🔗 Fallback chain initialized with providers: {' → '.join(available)} → MockLLM")
+        
+        return chain
     
     # Handle explicit mock request
     if provider == "mock":
@@ -602,6 +627,29 @@ def get_llm_provider(
     
     raise ValueError(
         f"Unknown provider: {provider}. "
-        f"Valid options: auto, mock, openai, cohere, gemini, grok, mistral, "
+        f"Valid options: auto, fallback, mock, openai, cohere, gemini, grok, mistral, "
         f"huggingface, ollama, anthropic, bedrock"
     )
+
+
+def get_fallback_chain(show_warning: bool = True, **kwargs: Any) -> "FallbackChain":
+    """Convenience function to get a FallbackChain directly.
+    
+    Creates a FallbackChain that tries all available providers in priority order:
+    1. OpenAI → 2. Cohere → 3. Gemini → 4. Grok → 5. Mistral → 
+    6. HuggingFace → 7. Ollama → 8. Anthropic → 9. Bedrock → 10. MockLLM
+    
+    Args:
+        show_warning: Whether to display warnings when falling back
+        **kwargs: Additional provider-specific parameters
+        
+    Returns:
+        A FallbackChain instance
+        
+    Example:
+        >>> chain = get_fallback_chain()
+        >>> response = await chain.complete("Hello!")
+        >>> print(f"Handled by: {chain.last_provider_used}")
+    """
+    from .providers import FallbackChain
+    return FallbackChain.from_environment(show_warnings=show_warning, **kwargs)
