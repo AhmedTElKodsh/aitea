@@ -1,16 +1,60 @@
-typer[all]>=0.9.0
-rich>=13.0.0
-pandas>=2.0.0
-numpy>=1.24.0
-pydantic>=2.0.0
-pytest>=7.0.0
-hypothesis>=6.0.0
-pytest-cov>=4.0.0
-mypy>=1.0.0
-langchain-core>=0.1.0
-langchain-openai>=0.0.5
-langchain-community>=0.0.20
-langgraph>=0.0.20
-chromadb>=0.4.0
-pytest-asyncio>=0.21.0
+# Core dependencies
+python-dotenv==1.0.0
+pydantic==2.5.0
+pydantic-settings==2.1.0
 
+# LLM Providers
+openai==1.6.0
+anthropic==0.8.0
+groq==0.4.0
+
+# LangChain ecosystem
+langchain==0.1.0
+langchain-core==0.1.0
+langchain-community==0.0.10
+langchain-openai==0.0.2
+langchain-anthropic==0.0.1
+langgraph==0.0.20
+
+# LlamaIndex
+llama-index==0.9.0
+llama-index-core==0.9.0
+
+# Embeddings and Vector Stores
+sentence-transformers==2.2.2
+chromadb==0.4.18
+faiss-cpu==1.7.4
+
+# Document Processing
+pypdf==3.17.0
+python-docx==1.1.0
+beautifulsoup4==4.12.2
+markdown==3.5.1
+
+# Multi-Agent Frameworks
+crewai==0.1.0
+pyautogen==0.2.0
+
+# Observability and Evaluation
+langsmith==0.0.70
+
+# Testing
+pytest==7.4.3
+pytest-asyncio==0.21.1
+hypothesis==6.92.0
+
+# Token Counting
+tiktoken==0.5.2
+
+# Utilities
+pyyaml==6.0.1
+requests==2.31.0
+aiohttp==3.9.1
+
+# Local Model Serving (optional)
+# ollama==0.1.0  # Uncomment if using local models
+
+# Development tools (optional)
+# black==23.12.0
+# ruff==0.1.8
+# mypy==1.7.1

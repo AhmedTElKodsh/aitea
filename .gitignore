@@ -1,12 +1,8 @@
-# Byte-compiled / optimized / DLL files
+# Python
 __pycache__/
 *.py[cod]
 *$py.class
-
-# C extensions
 *.so
-
-# Distribution / packaging
 .Python
 build/
 develop-eggs/
@@ -27,33 +23,15 @@ share/python-wheels/
 *.egg
 MANIFEST
 
-# PyInstaller
-*.manifest
-*.spec
-
-# Unit test / coverage reports
-htmlcov/
-.tox/
-.nox/
-.coverage
-.coverage.*
-.cache
-nosetests.xml
-coverage.xml
-*.cover
-*.py,cover
-.hypothesis/
-.pytest_cache/
-
-# Virtual environments
+# Virtual Environments
+.venv/
 venv/
 env/
 ENV/
 env.bak/
 venv.bak/
-.venv/
 
-# IDEs
+# IDE
 .vscode/
 .idea/
 *.swp
@@ -61,8 +39,86 @@ venv.bak/
 *~
 .DS_Store
 
-# Project specific
-data/
-*.csv
-*.json
-!src/templates/*.json
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+.hypothesis/
+
+# Environment Variables
+.env
+.env.local
+.env.*.local
+
+# Vector Stores and Databases
+chroma_db/
+*.db
+*.sqlite
+*.sqlite3
+
+# Logs
+*.log
+logs/
+
+# Model Caches
+.cache/
+models/
+*.pkl
+*.pickle
+
+# LangSmith
+.langsmith/
+
+# Jupyter Notebooks
+.ipynb_checkpoints/
+*.ipynb
+
+# Documentation builds
+docs/_build/
+site/
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+
+# Archives and backups
+*.tar.gz
+*.zip
+*.bak
+_ARCHIVE_*/  # Keep archive directories out of git
+
+# Build artifacts
+*.pyc
+*.pyo
+*.pyd
+.Python
+
+# AI Assistant configs (keep for reference but don't version)
+.agent/
+.antigravity/
+.augment/
+.clinerules/
+.crush/
+.cursor/
+.gemini/
+.github/
+.iflow/
+.kilocodemodes
+.kiro/
+.opencode/
+.qwen/
+.roo/
+.rovodev/
+.trae/
+
+# Exception: Keep .claude and .windsurf for this project
+# .claude/
+# .windsurf/
+
+# Deletion staging
+.DELETE_STAGING/
+
+# BMad output
+_bmad-output/

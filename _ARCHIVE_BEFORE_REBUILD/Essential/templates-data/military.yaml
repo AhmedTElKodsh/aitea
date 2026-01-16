@@ -1,0 +1,81 @@
+# Military/Defense Contract Template
+# WHY: Specialized template for defense and military contracts
+# WHAT: Defines required sections with security and compliance focus
+# HOW: YAML structure validated by ContractTemplate Pydantic model
+
+name: "Defense Services Agreement"
+type: military
+version: "1.0"
+description: "Specialized template for defense and military contracts with security clearance and compliance requirements"
+
+required_sections:
+  - title: "Contract Scope"
+    required: true
+    clauses:
+      - title: "Statement of Work"
+        placeholder: "{{statement_of_work}}"
+        required: true
+      - title: "Contract Line Items"
+        placeholder: "{{contract_line_items}}"
+        required: true
+      - title: "Performance Period"
+        placeholder: "{{performance_period}}"
+        required: true
+
+  - title: "Security Requirements"
+    required: true
+    clauses:
+      - title: "Security Classification"
+        placeholder: "{{security_classification}}"
+        required: true
+      - title: "Clearance Requirements"
+        placeholder: "{{clearance_requirements}}"
+        required: true
+      - title: "Facility Security"
+        placeholder: "{{facility_security}}"
+        required: true
+      - title: "ITAR Compliance"
+        placeholder: "{{itar_compliance}}"
+        required: true
+
+  - title: "Pricing and Payment"
+    required: true
+    clauses:
+      - title: "Contract Type"
+        placeholder: "{{contract_type}}"
+        required: true
+      - title: "Pricing Structure"
+        placeholder: "{{pricing_structure}}"
+        required: true
+      - title: "Payment Terms"
+        placeholder: "{{payment_terms}}"
+        required: true
+      - title: "Cost Accounting Standards"
+        placeholder: "{{cas_compliance}}"
+        required: false
+
+  - title: "Compliance"
+    required: true
+    clauses:
+      - title: "FAR/DFARS Clauses"
+        placeholder: "{{far_dfars_clauses}}"
+        required: true
+      - title: "Export Control"
+        placeholder: "{{export_control}}"
+        required: true
+      - title: "Cybersecurity Requirements"
+        placeholder: "{{cybersecurity_requirements}}"
+        required: true
+
+  - title: "Deliverables and Acceptance"
+    required: true
+    clauses:
+      - title: "Delivery Schedule"
+        placeholder: "{{delivery_schedule}}"
+        required: true
+      - title: "Acceptance Testing"
+        placeholder: "{{acceptance_testing}}"
+        required: true
+      - title: "Quality Assurance"
+        placeholder: "{{quality_assurance}}"
+        required: true

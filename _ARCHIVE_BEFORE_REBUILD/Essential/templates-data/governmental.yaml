@@ -1,0 +1,81 @@
+# Government Contract Template
+# WHY: Standard template for government/public sector contracts
+# WHAT: Defines required sections with regulatory compliance focus
+# HOW: YAML structure validated by ContractTemplate Pydantic model
+
+name: "Government Services Agreement"
+type: governmental
+version: "1.0"
+description: "Standard template for government and public sector contracts with regulatory compliance and transparency requirements"
+
+required_sections:
+  - title: "Contract Purpose"
+    required: true
+    clauses:
+      - title: "Purpose Statement"
+        placeholder: "{{purpose_statement}}"
+        required: true
+      - title: "Scope of Services"
+        placeholder: "{{scope_of_services}}"
+        required: true
+      - title: "Contract Period"
+        placeholder: "{{contract_period}}"
+        required: true
+
+  - title: "Compensation and Budget"
+    required: true
+    clauses:
+      - title: "Total Contract Value"
+        placeholder: "{{total_contract_value}}"
+        required: true
+      - title: "Budget Allocation"
+        placeholder: "{{budget_allocation}}"
+        required: true
+      - title: "Payment Schedule"
+        placeholder: "{{payment_schedule}}"
+        required: true
+      - title: "Audit Requirements"
+        placeholder: "{{audit_requirements}}"
+        required: true
+
+  - title: "Regulatory Compliance"
+    required: true
+    clauses:
+      - title: "Applicable Laws"
+        placeholder: "{{applicable_laws}}"
+        required: true
+      - title: "Equal Opportunity"
+        placeholder: "{{equal_opportunity}}"
+        required: true
+      - title: "Accessibility Requirements"
+        placeholder: "{{accessibility_requirements}}"
+        required: true
+      - title: "Data Protection"
+        placeholder: "{{data_protection}}"
+        required: true
+
+  - title: "Reporting and Transparency"
+    required: true
+    clauses:
+      - title: "Progress Reports"
+        placeholder: "{{progress_reports}}"
+        required: true
+      - title: "Financial Reporting"
+        placeholder: "{{financial_reporting}}"
+        required: true
+      - title: "Public Disclosure"
+        placeholder: "{{public_disclosure}}"
+        required: false
+
+  - title: "Termination and Disputes"
+    required: true
+    clauses:
+      - title: "Termination for Convenience"
+        placeholder: "{{termination_convenience}}"
+        required: true
+      - title: "Termination for Cause"
+        placeholder: "{{termination_cause}}"
+        required: true
+      - title: "Dispute Resolution"
+        placeholder: "{{dispute_resolution}}"
+        required: true

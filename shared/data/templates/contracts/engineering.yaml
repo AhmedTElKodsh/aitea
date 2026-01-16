@@ -1,0 +1,75 @@
+# Engineering Services Agreement Template
+# WHY: Standard template for engineering/technical service contracts
+# WHAT: Defines required sections for engineering projects
+# HOW: YAML structure validated by ContractTemplate Pydantic model
+
+name: "Engineering Services Agreement"
+type: engineering
+version: "1.0"
+description: "Standard template for engineering and technical service contracts including scope, deliverables, and IP terms"
+
+required_sections:
+  - title: "Scope of Work"
+    required: true
+    clauses:
+      - title: "Project Description"
+        placeholder: "{{project_description}}"
+        required: true
+      - title: "Deliverables"
+        placeholder: "{{deliverables}}"
+        required: true
+      - title: "Timeline"
+        placeholder: "{{timeline}}"
+        required: true
+      - title: "Acceptance Criteria"
+        placeholder: "{{acceptance_criteria}}"
+        required: false
+
+  - title: "Payment Terms"
+    required: true
+    clauses:
+      - title: "Total Contract Value"
+        placeholder: "{{total_amount}}"
+        required: true
+      - title: "Payment Schedule"
+        placeholder: "{{payment_schedule}}"
+        required: true
+      - title: "Late Payment Penalties"
+        placeholder: "{{late_payment_terms}}"
+        required: false
+
+  - title: "Technical Requirements"
+    required: true
+    clauses:
+      - title: "Technical Specifications"
+        placeholder: "{{technical_specs}}"
+        required: true
+      - title: "Quality Standards"
+        placeholder: "{{quality_standards}}"
+        required: true
+      - title: "Testing Requirements"
+        placeholder: "{{testing_requirements}}"
+        required: false
+
+  - title: "Intellectual Property"
+    required: true
+    clauses:
+      - title: "IP Ownership"
+        placeholder: "{{ip_ownership}}"
+        required: true
+      - title: "License Terms"
+        placeholder: "{{license_terms}}"
+        required: false
+      - title: "Confidentiality"
+        placeholder: "{{confidentiality_terms}}"
+        required: true
+
+  - title: "Warranties and Liability"
+    required: true
+    clauses:
+      - title: "Warranty Period"
+        placeholder: "{{warranty_period}}"
+        required: true
+      - title: "Limitation of Liability"
+        placeholder: "{{liability_limit}}"
+        required: true

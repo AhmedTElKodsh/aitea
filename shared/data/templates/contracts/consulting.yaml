@@ -1,0 +1,72 @@
+# Consulting Services Agreement Template
+# WHY: Standard template for consulting/advisory service contracts
+# WHAT: Defines required sections for consulting engagements
+# HOW: YAML structure validated by ContractTemplate Pydantic model
+
+name: "Consulting Services Agreement"
+type: consulting
+version: "1.0"
+description: "Standard template for consulting and advisory service contracts including services, compensation, and confidentiality"
+
+required_sections:
+  - title: "Services"
+    required: true
+    clauses:
+      - title: "Service Description"
+        placeholder: "{{service_description}}"
+        required: true
+      - title: "Service Deliverables"
+        placeholder: "{{service_deliverables}}"
+        required: true
+      - title: "Service Level Agreement"
+        placeholder: "{{sla_terms}}"
+        required: false
+
+  - title: "Compensation"
+    required: true
+    clauses:
+      - title: "Hourly Rate"
+        placeholder: "{{hourly_rate}}"
+        required: true
+      - title: "Expense Reimbursement"
+        placeholder: "{{expense_policy}}"
+        required: true
+      - title: "Invoice Terms"
+        placeholder: "{{invoice_terms}}"
+        required: true
+
+  - title: "Term and Termination"
+    required: true
+    clauses:
+      - title: "Contract Duration"
+        placeholder: "{{contract_duration}}"
+        required: true
+      - title: "Termination Conditions"
+        placeholder: "{{termination_conditions}}"
+        required: true
+      - title: "Notice Period"
+        placeholder: "{{notice_period}}"
+        required: true
+
+  - title: "Confidentiality"
+    required: true
+    clauses:
+      - title: "Confidential Information"
+        placeholder: "{{confidential_info_definition}}"
+        required: true
+      - title: "Non-Disclosure Obligations"
+        placeholder: "{{nda_obligations}}"
+        required: true
+      - title: "Return of Materials"
+        placeholder: "{{materials_return}}"
+        required: false
+
+  - title: "Independent Contractor"
+    required: true
+    clauses:
+      - title: "Contractor Status"
+        placeholder: "{{contractor_status}}"
+        required: true
+      - title: "No Employment Relationship"
+        placeholder: "{{no_employment}}"
+        required: true

@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(powershell -Command \"Remove-Item -Path ''.kiro'' -Recurse -Force\")",
+      "Bash(powershell -Command \"Remove-Item -Path ''AI-Contract-Generator-Checker'' -Recurse -Force\")",
+      "Bash(powershell -Command \"Remove-Item -Path ''.DELETE_STAGING'' -Recurse -Force\")"
+    ]
+  }
+}
