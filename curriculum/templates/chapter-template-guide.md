@@ -1,6 +1,15 @@
-# Chapter Template Usage Guide
+# Chapter Template Usage Guide v2.1
 
+**Version**: 2.1
+**Last Updated**: 2026-01-17
 **Purpose**: This guide helps AI tutors and curriculum developers use the cafe-style chapter template effectively.
+
+**IMPORTANT UPDATES IN v2.1**:
+- ✅ Verification sections are now MANDATORY for all chapters
+- ✅ Summary sections are now MANDATORY (7+ key takeaways required)
+- ✅ Minimum 2 "Try This!" exercises REQUIRED per chapter
+- ✅ Project Thread metadata added to track mini-project connections
+- ✅ Standardized metadata blocks across all phases
 
 ---
 
@@ -27,6 +36,9 @@
 **Sections to Emphasize**:
 - ☕ Coffee Shop Intro (make it very relatable)
 - Prerequisites Check (critical for beginners)
+- **Verification Section** (REQUIRED - include simple automated tests)
+- **Summary Section** (REQUIRED - 7+ key takeaways)
+- **Minimum 2 "Try This!" exercises** (REQUIRED)
 - Troubleshooting FAQ (anticipate every possible issue)
 - From Scratch vs Framework (skip this section - not applicable)
 
@@ -58,7 +70,10 @@
 **Sections to Emphasize**:
 - Key Concepts Deep Dive (progressive layers)
 - Implementation Guide (modified scaffold)
+- **Minimum 2 "Try This!" exercises** (REQUIRED - hands-on practice)
 - Correctness Properties (property-based testing)
+- **Verification Section** (REQUIRED - automated test scripts)
+- **Summary Section** (REQUIRED - 7+ key takeaways)
 - Common Mistakes (show anti-patterns)
 - From Scratch vs Framework (critical - show both approaches)
 
@@ -108,8 +123,10 @@ class MultiProviderClient:
 **Sections to Emphasize**:
 - Architecture Overview (show how everything connects)
 - Project Integration (this is THE project now)
+- **Verification Section** (REQUIRED - production-grade test scripts)
+- **Summary Section** (REQUIRED - comprehensive learning outcomes)
+- **Minimum 2 "Try This!" exercises** (REQUIRED - complex integration exercises)
 - Security Considerations (critical for real applications)
-- Verification Commands (comprehensive testing)
 
 **Tone**: Professional peer, assume competence
 
@@ -630,24 +647,30 @@ all related and finds them together.
 
 ## Checklist Before Publishing
 
-### Content Completeness
+### Content Completeness (REQUIRED Sections)
 
 - [ ] All `[placeholders]` replaced with actual content
-- [ ] Metadata filled (phase, time, difficulty, prerequisites)
+- [ ] **Metadata filled completely** (phase, time, difficulty, prerequisites, Project Thread) - REQUIRED
 - [ ] Prerequisites check command tested
 - [ ] All code examples run without errors
+- [ ] **Minimum 2 "Try This!" exercises included** - REQUIRED
+- [ ] **Verification Section with 3+ automated tests** - REQUIRED
+- [ ] **Summary Section with 7+ key takeaways** - REQUIRED
 - [ ] Verification commands tested
 - [ ] Property-based tests written and passing
 - [ ] TODOs in scaffolds are specific and achievable
 - [ ] Security section included if applicable
 - [ ] Links to other chapters are correct
 
-### Pedagogical Quality
+### Pedagogical Quality (REQUIRED Elements)
 
 - [ ] Coffee Shop Intro is relatable and hooks the reader
 - [ ] Learning objectives are specific and measurable
 - [ ] Concepts progress from simple → advanced
+- [ ] **Minimum 2 "Try This!" exercises with hints and solutions** - REQUIRED
 - [ ] At least one analogy per major concept
+- [ ] **Verification Section tests all key concepts** - REQUIRED
+- [ ] **Summary Section has 7+ bullet points + key takeaway** - REQUIRED
 - [ ] Common mistakes section addresses expected errors
 - [ ] Debugging challenge has 2-3 bugs
 - [ ] Quick Check questions test understanding (not memorization)
@@ -763,9 +786,16 @@ If it wasn't in a previous chapter, define it or link to external resources.
 ## Version History
 
 - **v1.0** (2026-01-16): Initial template created for AI Knowledge Base curriculum v6
-- Merges Contract v5 pedagogy with AITEA testing rigor
-- Cafe-style conversational approach
-- Modified scaffold pattern
+  - Merges Contract v5 pedagogy with AITEA testing rigor
+  - Cafe-style conversational approach
+  - Modified scaffold pattern
+- **v2.1** (2026-01-17): **Current version**
+  - **REQUIRED Verification Section**: All chapters must include automated test scripts
+  - **REQUIRED Summary Section**: All chapters must include 7+ key takeaways
+  - **REQUIRED Try This! Exercises**: Minimum 2 hands-on exercises per chapter
+  - **Project Thread Metadata**: Track mini-project connections across chapters
+  - Standardized metadata blocks across all phases
+  - Enhanced template compliance requirements
 
 ---
 

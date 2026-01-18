@@ -9,11 +9,14 @@ Type: Foundation / Concept / Implementation / Application
 Prerequisites: Chapters [X, Y, Z]
 Builds Toward: Chapters [A, B, C]
 Correctness Properties: [P1, P5, P9]
+Project Thread: [Mini-project name - connects to Ch X, Y, Z]
 
 NAVIGATION
 → Quick Reference: #quick-reference
 → Verification: #verification
 → What's Next: #whats-next
+
+TEMPLATE VERSION: v2.1 (2026-01-17)
 -->
 
 ---
@@ -327,9 +330,15 @@ print([test code])  # Should output: [expected]
 
 ---
 
-## Verification Commands
+## Verification (REQUIRED SECTION)
 
 ⏱️ **Time Checkpoint**: You should be at [X] minutes
+
+**This section is MANDATORY. It must include:**
+- Minimum 3 automated tests
+- Clear test descriptions
+- Expected output examples
+- Pass/fail assertions
 
 Run these to verify your implementation works:
 
@@ -437,7 +446,17 @@ if __name__ == "__main__":
     # Should output: [expected]
 ```
 
-### Hints (Hover to Reveal)
+### 🔬 Try This! Exercise #1 (REQUIRED)
+
+**Challenge**: [Clear goal statement]
+
+**Starter code**:
+```python
+# TODO: [Specific instruction]
+# Hint: [Helpful hint]
+def your_solution():
+    pass
+```
 
 <details>
 <summary>💡 Hint 1</summary>
@@ -450,6 +469,38 @@ if __name__ == "__main__":
 <summary>💡 Hint 2</summary>
 
 [Second hint]
+
+</details>
+
+<details>
+<summary>✅ Solution</summary>
+
+```python
+[Full solution with explanation]
+```
+
+**Why This Works**: [Explanation]
+
+</details>
+
+---
+
+### 🔬 Try This! Exercise #2 (REQUIRED)
+
+**Challenge**: [Clear goal statement]
+
+**Starter code**:
+```python
+# TODO: [Specific instruction]
+# Hint: [Helpful hint]
+def your_solution():
+    pass
+```
+
+<details>
+<summary>💡 Hint</summary>
+
+[Hint]
 
 </details>
 
@@ -731,24 +782,38 @@ You should be able to:
 
 ---
 
-## Summary + Mental Model
+## Summary (REQUIRED SECTION)
 
-### Key Takeaways
+**This section is MANDATORY. It must include:**
+- Minimum 7 bullet points covering what was learned
+- One key takeaway statement
+- Skills unlocked summary
+- Connection to future chapters
 
-**In Three Sentences**:
-1. [Most important point]
-2. [Second most important point]
-3. [Practical takeaway]
+**What you learned:**
+
+1. ✅ **[Key concept 1]** — [One sentence description]
+2. ✅ **[Key concept 2]** — [One sentence description]
+3. ✅ **[Key concept 3]** — [One sentence description]
+4. ✅ **[Key concept 4]** — [One sentence description]
+5. ✅ **[Key concept 5]** — [One sentence description]
+6. ✅ **[Key concept 6]** — [One sentence description]
+7. ✅ **[Key concept 7]** — [One sentence description]
+
+**Key takeaway:** [One powerful sentence that captures the essence of the chapter - this is what students should remember 6 months later] 🧠
+
+**Skills unlocked:** 🎯
+- [Practical skill 1]
+- [Practical skill 2]
+- [Practical skill 3]
+
+**Looking ahead:** In the next chapters, you'll use [this concept] to build [specific application]. This foundation is critical for [future milestone].
 
 ### Mental Model / Analogy
 
 > Think of [concept] like [relatable analogy].
 >
 > [2-3 sentences extending the analogy]
-
-### The Core Insight
-
-[One-sentence "aha" moment to remember]
 
 ### Common Pitfall to Avoid
 

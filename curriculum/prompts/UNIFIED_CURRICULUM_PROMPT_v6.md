@@ -1,9 +1,15 @@
-# Unified AI Engineering Curriculum Teaching Prompt v6
+# Unified AI Engineering Curriculum Teaching Prompt v6.1
 
-**Version**: 6.0
-**Last Updated**: 2026-01-16
+**Version**: 6.1
+**Last Updated**: 2026-01-17
 **Curriculum**: AI Knowledge Base - Zero to Hero (54 Chapters)
 **Teaching Mode**: Cafe-Style Conversational with Progressive Complexity
+
+**IMPORTANT UPDATES IN v6.1**:
+- ✅ Verification sections are now MANDATORY for all chapters
+- ✅ Summary sections are now MANDATORY (7+ key takeaways required)
+- ✅ Minimum 2 "Try This!" exercises REQUIRED per chapter
+- ✅ Project Thread metadata added to track mini-project connections
 
 ---
 
@@ -441,20 +447,26 @@ raise Exception("All providers failed")
 
 ## Chapter Structure Guidelines
 
-### Every Chapter Must Have
+### Every Chapter Must Have (REQUIRED Sections)
 
-1. **☕ Coffee Shop Intro**: Relatable hook
-2. **Prerequisites Check**: Runnable verification
-3. **The Story**: Problem → Solution journey
-4. **Learning Objectives**: 3-5 measurable outcomes
-5. **Key Concepts Deep Dive**: 3-layer explanation
-6. **Correctness Properties**: Property-based tests
-7. **Implementation Guide**: Modified scaffold
-8. **Verification Commands**: Proof it works
-9. **Troubleshooting**: Common errors + fixes
-10. **Quick Check Questions**: Test understanding
-11. **Summary**: Key takeaways
-12. **What's Next**: Bridge to next chapter
+1. **☕ Coffee Shop Intro**: Relatable hook (REQUIRED)
+2. **Prerequisites Check**: Runnable verification (REQUIRED)
+3. **The Story**: Problem → Solution journey (REQUIRED)
+4. **Learning Objectives**: 3-5 measurable outcomes (REQUIRED)
+5. **Key Concepts Deep Dive**: 3-layer explanation (REQUIRED)
+6. **Correctness Properties**: Property-based tests (REQUIRED)
+7. **Implementation Guide**: Modified scaffold (REQUIRED)
+8. **MINIMUM 2 "Try This!" Exercises**: Hands-on practice with hints and solutions (REQUIRED)
+9. **Verification Section**: Automated test scripts (REQUIRED - see details below)
+10. **Troubleshooting**: Common errors + fixes (REQUIRED)
+11. **Quick Check Questions**: Test understanding (REQUIRED)
+12. **Summary Section**: 7+ key takeaways + key insight (REQUIRED - see details below)
+13. **What's Next**: Bridge to next chapter (REQUIRED)
+
+**CRITICAL REQUIREMENTS**:
+- **Verification Section**: ALL chapters MUST include automated test scripts that students can run to verify their learning
+- **Summary Section**: ALL chapters MUST include minimum 7 bullet points + one key takeaway statement
+- **Try This! Exercises**: ALL chapters MUST include MINIMUM 2 hands-on practice exercises
 
 ### Optional Sections (Based on Chapter Type)
 
@@ -915,7 +927,7 @@ programmatic approach you're learning here.
 
 - **v1.0** (2024): Original Contract curriculum
 - **v2.0-v5.0**: Iterations on Contract project
-- **v6.0** (2026-01-16): **Current version**
+- **v6.0** (2026-01-16): Major curriculum expansion
   - Merged AITEA and Contract projects
   - 54 chapters (expanded from 24)
   - Added LlamaIndex, Multi-Agent, Production topics
@@ -924,6 +936,13 @@ programmatic approach you're learning here.
   - Universal examples → Civil Engineering application
   - 40+ property-based tests
   - Multi-provider LLM support (OpenAI, Anthropic, Groq, Ollama, MockLLM)
+- **v6.1** (2026-01-17): **Current version**
+  - **REQUIRED Verification Section**: All chapters must include automated test scripts
+  - **REQUIRED Summary Section**: All chapters must include 7+ key takeaways
+  - **REQUIRED Try This! Exercises**: Minimum 2 hands-on exercises per chapter
+  - **Project Thread Metadata**: Track mini-project connections across chapters
+  - Standardized metadata blocks across all phases
+  - Enhanced template compliance requirements
 
 ---
 
@@ -952,6 +971,9 @@ Before teaching a chapter, verify:
 - [ ] You can adapt scaffolding based on learner level
 - [ ] You have diagnostic questions ready for common errors
 - [ ] You understand how this builds toward the final project
+- [ ] **You have Verification test scripts ready** (REQUIRED)
+- [ ] **You have Summary section with 7+ bullets prepared** (REQUIRED)
+- [ ] **You have minimum 2 "Try This!" exercises ready** (REQUIRED)
 
 During teaching:
 
@@ -959,17 +981,22 @@ During teaching:
 - [ ] Verify prerequisites
 - [ ] Tell the story (problem → solution)
 - [ ] Teach in 3 layers (simple → realistic → production)
+- [ ] **Include minimum 2 "Try This!" hands-on exercises** (REQUIRED)
 - [ ] Use modified scaffold (pattern → TODOs)
+- [ ] **Provide Verification test scripts** (REQUIRED)
 - [ ] Run verification commands
+- [ ] **Include comprehensive Summary section** (REQUIRED)
 - [ ] Celebrate success
 - [ ] Bridge to next chapter
 
 After teaching:
 
 - [ ] Verify learner can run all commands
+- [ ] **Verify all test scripts pass** (REQUIRED)
 - [ ] Check self-assessment ratings
 - [ ] Identify any gaps in understanding
 - [ ] Adjust next chapter based on their level
+- [ ] **Confirm Summary section has 7+ key takeaways** (REQUIRED)
 
 ---
 
