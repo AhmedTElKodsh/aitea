@@ -1,102 +1,217 @@
-# AI Knowledge Base - Civil Engineering Document System
+# 🏗️ AI Engineering Curriculum: Zero to Production RAG Systems
 
-**A comprehensive zero-to-hero AI Engineering curriculum teaching AI agents, RAG, and multi-agent systems through building a Civil Engineering Document System.**
+**A comprehensive 54-chapter hands-on curriculum that teaches you to build production-ready AI systems through real-world Civil Engineering applications.**
 
-## Project Overview
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+[![Python](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
+[![Progress](https://img.shields.io/badge/chapters-19%2F54%20complete-orange.svg)](PROGRESS-SUMMARY.md)
+[![Template](https://img.shields.io/badge/template-v2.1-green.svg)](curriculum/templates/)
 
-This project provides a **54-chapter hands-on curriculum** (60-65 hours) that takes you from basic Python knowledge to building production-ready AI systems. You'll learn by creating a real-world Civil Engineering Document System that handles:
+## 🎯 What You'll Build
 
-- **Contracts** (engineering, consulting, governmental, military)
-- **Proposals** (RFP/RFQ responses, technical approaches, pricing)
-- **Technical Reports** (engineering analysis, calculations, visualizations)
+By the end of this curriculum, you'll have built a **complete AI-powered Civil Engineering Document System** that:
 
-## Learning Approach
+- 📄 **Processes Technical Documents**: Contracts, proposals, structural analysis reports, geotechnical investigations
+- 🤖 **Uses Multiple AI Frameworks**: LangChain, LangGraph, LlamaIndex, CrewAI, AutoGen
+- 🔍 **Implements Advanced RAG**: Hybrid search, semantic chunking, query rewriting, contextual compression
+- 👥 **Orchestrates Multi-Agent Systems**: Supervisor patterns, team-based workflows, iterative refinement
+- ✅ **Production-Ready**: Property-based testing, error handling, cost tracking, security best practices
 
-- **Zero-to-Hero Progression**: Start with foundations, build up to advanced multi-agent systems
-- **Cafe-Style Teaching**: Casual conversational language with real-world analogies
-- **Modified Scaffold**: Example patterns + starter code, you fill in the TODOs
-- **Universal Examples First**: Chapters 1-30 use movies, restaurants, FAQs
-- **Civil Engineering Application**: Chapters 31-54 apply concepts to real projects
-- **Property-Based Testing**: 40+ correctness properties using Hypothesis
+## 🚀 Why This Curriculum?
 
-## Curriculum Structure (54 Chapters, 10 Phases)
+**Learn by Building Real Systems** - Not just theory. Every chapter includes working code, automated verification, and hands-on exercises.
 
-### Phase 0: Foundations (Ch 1-6) - 9 hours
-Environment setup, Python type hints, Pydantic models, validation, template systems
+**Zero to Hero in 71 Hours** - Start with Python basics, end with production multi-agent systems. No AI experience required.
 
-### Phase 1: LLM Fundamentals (Ch 7-12) - 9 hours
-Multi-provider LLM clients, prompts, structured output, streaming, error handling
+**Industry-Proven Patterns** - Learn from real projects: AITEA's multi-provider LLM system and Contract Generator's pedagogical approach.
 
-### Phase 2: Embeddings & Vectors (Ch 13-16) - 6 hours
-Sentence transformers, vector stores, similarity search, chunking strategies
+**Civil Engineering Focus** - Apply AI to real-world problems: analyzing bridge load calculations, processing geotechnical reports, generating RFP responses.
 
-### Phase 3: RAG Fundamentals (Ch 17-22) - 9 hours
-Retrieval-augmented generation, LCEL chains, advanced RAG patterns
+## 📚 Learning Approach
 
-### Phase 4: LangChain Core (Ch 23-25) - 4.5 hours
-Document loaders, text splitting, memory, callbacks
+### Progressive Mastery
 
-### Phase 5: Agents (Ch 26-30) - 7.5 hours
-ReAct pattern, OTAR loop, tool calling, agent memory
+- **Foundations First** (Ch 1-6): Python, Pydantic, type hints, configuration
+- **Universal Examples** (Ch 7-30): Learn with movies, restaurants, FAQs
+- **Domain Application** (Ch 31-54): Apply to Civil Engineering projects
+- **Component Evolution**: Each mini-project builds toward the final system
 
-### Phase 6: LangGraph (Ch 31-34) - 6 hours
-State graphs, conditional routing, human-in-the-loop, persistence
+### Pedagogical Features
 
-### Phase 7: LlamaIndex (Ch 35-38) - 6 hours
-Query engines, response synthesis, advanced indexing, hybrid search
+- ☕ **Cafe-Style Teaching**: Conversational language with real-world analogies
+- 🔨 **Modified Scaffold**: Example patterns + starter code, you complete the TODOs
+- ✅ **Automated Verification**: Every chapter includes 3-5 test scripts with expected outputs
+- 🧪 **Property-Based Testing**: 40+ correctness properties using Hypothesis
+- 🎯 **Hands-On Exercises**: Minimum 2 "Try This!" challenges per chapter
 
-### Phase 8: Production (Ch 39-42) - 6 hours
-Evaluation, LangSmith, error handling, security, cost optimization
+## 📖 Curriculum Structure (54 Chapters, 10 Phases)
 
-### Phase 9: Multi-Agent (Ch 43-48) - 9 hours
-CrewAI, AutoGen, supervisor patterns, agent communication
+| Phase        | Chapters | Hours | Focus                                                |
+| ------------ | -------- | ----- | ---------------------------------------------------- |
+| **Phase 0**  | 1-6      | 9h    | 🔧 Foundations: Python, Pydantic, Config             |
+| **Phase 1**  | 7-12     | 9h    | 🤖 LLM Fundamentals: Multi-provider clients, prompts |
+| **Phase 2**  | 13-16    | 6h    | 🔍 Embeddings & Vectors: Transformers, Chroma        |
+| **Phase 3**  | 17-22    | 9h    | 📚 RAG Fundamentals: Retrieval + Generation          |
+| **Phase 4**  | 23-25    | 4.5h  | ⛓️ LangChain Core: Loaders, memory, callbacks        |
+| **Phase 5**  | 26-30    | 7.5h  | 🎯 Agents: ReAct, OTAR, tool calling                 |
+| **Phase 6**  | 31-34    | 6h    | 🕸️ LangGraph: State graphs, workflows                |
+| **Phase 7**  | 35-38    | 6h    | 🦙 LlamaIndex: Query engines, hybrid search          |
+| **Phase 8**  | 39-42    | 6h    | 🚀 Production: Evaluation, security, optimization    |
+| **Phase 9**  | 43-48    | 9h    | 👥 Multi-Agent: CrewAI, AutoGen, teams               |
+| **Phase 10** | 49-54    | 9h    | 🏗️ Civil Engineering: Complete system                |
 
-### Phase 10: Civil Engineering Application (Ch 49-54) - 9 hours
-Apply everything to build Contracts, Proposals, Reports system
+**Total: 54 chapters, 71 hours** | **Current Progress: 19/54 chapters (30.1%)** ✅
 
-**Total: 54 chapters, 71 hours**
+## ✨ Key Features
 
-## Key Features
+### 🤖 Multi-Provider LLM Support
 
-### Multi-Provider LLM Support
-- OpenAI (GPT-3.5, GPT-4)
-- Anthropic (Claude 3)
-- Groq (Fast inference)
-- Ollama (Local models)
-- MockLLM (Testing)
-- Fallback chains with graceful degradation
+```python
+# Seamlessly switch between providers with fallback chains
+client = MultiProviderLLMClient(
+    providers=[OpenAI(), Anthropic(), Groq(), Ollama()],
+    fallback_strategy="graceful_degradation"
+)
+```
 
-### Advanced RAG Patterns
-- 4 chunking strategies (FixedSize, Recursive, Semantic, Sentence)
-- Hybrid search (dense + sparse)
-- Query rewriting and expansion
-- Contextual compression
-- Document loaders (PDF, DOCX, HTML, Markdown)
+- OpenAI (GPT-3.5, GPT-4), Anthropic (Claude 3), Groq (Fast inference)
+- Ollama (Local models), MockLLM (Testing)
+- Automatic fallback with cost tracking
 
-### Agent Frameworks
+### 🔍 Advanced RAG Patterns
+
+- **4 Chunking Strategies**: FixedSize, Recursive, Semantic, Sentence
+- **Hybrid Search**: Dense (embeddings) + Sparse (BM25)
+- **Query Enhancement**: Rewriting, expansion, contextual compression
+- **Document Loaders**: PDF, DOCX, HTML, Markdown, CAD annotations
+
+### 👥 Agent Frameworks
+
 - **OTAR Loop**: Observe-Think-Act-Reflect pattern
 - **ReAct**: Reasoning and Acting agents
 - **LangGraph**: Complex workflows with state management
 - **CrewAI**: Team-based multi-agent systems
 - **AutoGen**: Iterative refinement agents
 
-### Production-Ready
-- Property-based testing (Hypothesis)
-- Error handling and retries
-- Token counting and cost tracking
-- Streaming responses
-- LangSmith evaluation
-- Security best practices
+### ✅ Production-Ready
 
-## Project Structure
+- **Testing**: Property-based testing with Hypothesis (40+ properties)
+- **Reliability**: Error handling, retries, graceful degradation
+- **Monitoring**: Token counting, cost tracking, LangSmith evaluation
+- **Performance**: Streaming responses, async/await patterns
+- **Security**: Input validation, prompt injection prevention
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+- Python 3.10+ installed
+- Basic Python knowledge (variables, functions, classes)
+- Text editor or IDE (VS Code recommended)
+- 1-2 hours per chapter for learning and exercises
+
+### Quick Start (5 minutes)
+
+```bash
+# 1. Clone the repository
+git clone https://github.com/AhmedTElKodsh/aitea.git
+cd aitea
+
+# 2. Create virtual environment
+python -m venv .venv
+source .venv/bin/activate  # Windows: .venv\Scripts\activate
+
+# 3. Install dependencies
+pip install -r requirements.txt
+
+# 4. Set up environment variables
+cp .env.example .env
+# Edit .env with your API keys (OpenAI, Anthropic, etc.)
+
+# 5. Start with Chapter 1
+# Open: curriculum/chapters/phase-0-foundations/chapter-01-environment-setup.md
+```
+
+### Learning Path
+
+1. **📖 Read the Chapter**: Understand concepts with cafe-style explanations
+2. **💻 Complete the Code**: Fill in TODOs in the starter code
+3. **✅ Run Verification**: Execute automated test scripts to verify your work
+4. **🎯 Try Exercises**: Complete 2+ hands-on challenges
+5. **🔄 Iterate**: Each chapter builds on previous ones
+
+**See [QUICKSTART.md](QUICKSTART.md) for detailed guidance.**
+
+## 🎓 Learning Paths
+
+Choose the path that fits your goals:
+
+### 🏃 Path 1: Rapid Implementation (4-6 weeks)
+
+**Goal**: Build a working RAG system quickly
+
+- Complete Ch 1-30 (Foundations → Agents)
+- Jump to Ch 49-54 (Civil Engineering Application)
+- **Best for**: Developers who need results fast
+
+### 🎯 Path 2: Comprehensive Mastery (8-10 weeks)
+
+**Goal**: Deep understanding of all AI frameworks
+
+- Complete all 54 chapters sequentially
+- Master LangChain, LangGraph, LlamaIndex, Multi-Agent systems
+- **Best for**: AI Engineers building production systems
+
+### 🔧 Path 3: Framework Focus
+
+**Goal**: Specialize in specific frameworks
+
+- **LangChain**: Ch 1-30
+- **LangGraph**: Ch 31-34
+- **LlamaIndex**: Ch 35-38
+- **Multi-Agent**: Ch 43-48
+- **Best for**: Developers with specific framework needs
+
+## 🛠️ Technology Stack
+
+### Core Frameworks
+
+- **LangChain**: Chains, agents, memory, callbacks
+- **LangGraph**: Stateful workflows and complex agent systems
+- **LlamaIndex**: Advanced indexing and query engines
+- **Pydantic**: Data validation and settings management
+
+### AI/ML Libraries
+
+- **OpenAI**: GPT models
+- **Anthropic**: Claude models
+- **Sentence Transformers**: Embeddings
+- **Chroma**: Vector store
+- **Ollama**: Local model serving
+
+### Testing & Quality
+
+- **pytest**: Unit and integration tests
+- **Hypothesis**: Property-based testing
+- **LangSmith**: Evaluation and monitoring
+
+### Multi-Agent Frameworks
+
+- **CrewAI**: Team-based workflows
+- **AutoGen**: Iterative agent conversations
+
+## 📂 Project Structure
 
 ```
-AI-Knowledge-Base/
+aitea/
 ├── curriculum/
 │   ├── chapters/          # 54 chapter markdown files
-│   ├── templates/         # Chapter templates for authors
-│   ├── prompts/           # Master curriculum prompt
-│   └── references/        # Reference materials from AITEA and Contract projects
+│   │   ├── phase-0-foundations/
+│   │   ├── phase-1-llm-fundamentals/
+│   │   └── phase-2-embeddings-vectors/
+│   ├── templates/         # Chapter templates (v2.1)
+│   ├── reference/         # PROJECT-THREAD.md, ce-contexts.md
+│   └── docs/              # Roadmap, session summaries
 ├── shared/
 │   ├── models/            # Pydantic models (contracts, proposals, reports)
 │   ├── infrastructure/    # LLM clients, providers, streaming
@@ -107,117 +222,66 @@ AI-Knowledge-Base/
 │   ├── properties/        # Property-based tests
 │   ├── unit/
 │   └── integration/
-└── _ARCHIVE_BEFORE_REBUILD/  # Complete backup of original projects
+└── requirements.txt       # Python dependencies
 ```
 
-## Getting Started
+## 📊 Current Status
 
-### Prerequisites
+**Progress**: 19/54 chapters complete (30.1%) ✅  
+**Latest**: Chapter 14 - Vector Stores with Chroma  
+**Template**: v2.1 (100% compliance on updated chapters)  
+**Quality**: All chapters include automated verification scripts
 
-- Python 3.10+
-- Basic Python knowledge (variables, functions, classes)
-- Text editor or IDE (VS Code recommended)
+See [PROGRESS-SUMMARY.md](PROGRESS-SUMMARY.md) for detailed progress tracking.
 
-### Installation
+## 🤝 Contributing
 
-```bash
-# Clone the repository
-git clone <repo-url>
-cd AI-Knowledge-Base
+This is an active learning project. Contributions welcome!
 
-# Create virtual environment
-python -m venv .venv
-source .venv/bin/activate  # Windows: .venv\Scripts\activate
+**How to contribute:**
 
-# Install dependencies
-pip install -r requirements.txt
+1. 🐛 **Report Issues**: Document errors with chapter reference
+2. 💡 **Suggest Improvements**: Propose enhancements with code examples
+3. ✅ **Add Tests**: Contribute property-based tests
+4. 📝 **Improve Documentation**: Clarify explanations or add examples
 
-# Set up environment variables
-cp .env.example .env
-# Edit .env with your API keys
-```
+**Quality Standards:**
 
-### Start Learning
+- All chapters must follow [Template v2.1](curriculum/templates/MASTER-CHAPTER-TEMPLATE-V2.md)
+- Include automated verification scripts
+- Provide working code examples
+- Test with property-based testing (Hypothesis)
 
-1. **Begin with Chapter 1**: `curriculum/chapters/phase-0-foundations/chapter-01-environment-setup.md`
-2. **Follow the progression**: Each chapter builds on previous ones
-3. **Complete the exercises**: Hands-on practice is essential
-4. **Run the tests**: Verify your understanding with property-based tests
-5. **Build incrementally**: By Chapter 54, you'll have a complete system
+## 📜 License
 
-## Technology Stack
+MIT License - See [LICENSE](LICENSE) for details
 
-### Core Frameworks
-- **LangChain**: Chains, agents, memory, callbacks
-- **LangGraph**: Stateful workflows and complex agent systems
-- **LlamaIndex**: Advanced indexing and query engines
-- **Pydantic**: Data validation and settings management
-
-### AI/ML Libraries
-- **OpenAI**: GPT models
-- **Anthropic**: Claude models
-- **Sentence Transformers**: Embeddings
-- **Chroma**: Vector store
-- **Ollama**: Local model serving
-
-### Testing
-- **pytest**: Unit and integration tests
-- **Hypothesis**: Property-based testing
-
-### Multi-Agent Frameworks
-- **CrewAI**: Team-based workflows
-- **AutoGen**: Iterative agent conversations
-
-## Learning Paths
-
-### Path 1: Rapid Implementation (4-6 weeks)
-Follow chapters 1-30, then jump to chapters 49-54 for Civil Engineering application.
-
-### Path 2: Comprehensive (8-10 weeks)
-Complete all 54 chapters sequentially for deep understanding.
-
-### Path 3: Framework Focus
-- LangChain: Ch 1-30
-- LangGraph: Ch 31-34
-- LlamaIndex: Ch 35-38
-- Multi-Agent: Ch 43-48
-
-## Project Phases (Part 2 - Parallel Waves)
-
-After completing the curriculum structure, implementation follows in 5 waves:
-
-**Wave 1**: Ch 7-12 (LLM Fundamentals)
-**Wave 2**: Ch 13-22 (Embeddings & RAG)
-**Wave 3**: Ch 23-30 (LangChain & Agents)
-**Wave 4**: Ch 31-42 (Advanced Topics)
-**Wave 5**: Ch 43-54 (Multi-Agent & Civil Engineering)
-
-Each wave: Write chapters → Implement examples → Verify learning
-
-## Contributing
-
-This is a learning project. If you find errors or have suggestions:
-1. Document the issue with chapter reference
-2. Propose improvements with code examples
-3. Test your changes with property-based tests
-
-## Credits
+## 🙏 Credits
 
 This curriculum merges best practices from:
+
 - **AITEA Project**: Multi-provider LLM system, property-based testing, OTAR agent pattern
-- **Contract Generator Project**: Excellent pedagogical approach, Pydantic models, Civil Engineering templates
+- **Contract Generator Project**: Pedagogical approach, Pydantic models, Civil Engineering templates
 
-## License
+Built with ❤️ for the AI Engineering community.
 
-[To be determined]
+## 📞 Support & Resources
 
-## Support
+- 📖 **Documentation**: [QUICKSTART.md](QUICKSTART.md) | [PROGRESS-SUMMARY.md](PROGRESS-SUMMARY.md)
+- 🔗 **Component Evolution**: [PROJECT-THREAD.md](curriculum/reference/PROJECT-THREAD.md)
+- 🏗️ **CE Examples**: [ce-contexts.md](curriculum/reference/ce-contexts.md)
+- 🗺️ **Curriculum Structure**: [roadmap-v6.md](curriculum/docs/roadmap-v6.md)
 
-For questions or feedback about the curriculum:
-- Review the chapter's "Troubleshooting FAQ" section
-- Check `curriculum/references/` for additional materials
-- Run property tests to verify your understanding
+## ⭐ Star This Repo
+
+If you find this curriculum helpful, please star the repository to help others discover it!
 
 ---
 
-**Ready to start your AI Engineering journey? Begin with Chapter 1!** 🚀
+<div align="center">
+
+**🚀 Ready to start your AI Engineering journey?**
+
+[Begin with Chapter 1](curriculum/chapters/phase-0-foundations/chapter-01-environment-setup.md) | [View Progress](PROGRESS-SUMMARY.md) | [Quick Start](QUICKSTART.md)
+
+</div>
